@@ -1,16 +1,28 @@
 const express = require("express");
 const app = express();
+const port = 3000;
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
+const authRoute = require("./routes/authentification");
 dotenv.config();
 
+app.listen(port, () => {
+    console.log("started my server");
+});
+
+app.get('/', (req, res) => {
+    res.send('Hello World!')
+  });
+/*
+app.use("/",(req,res)=>{
+    console.log("hey this is a test BLA!")
+});
+*/
 
 mongoose.connect(process.env.MONGODB_URL, {
     useNewUrlParser: true, 
     useUnifiedTopology: true,
     useCreateIndex: true,
-}).then(console.log("Connected to MongoDB")).catch((err) => console.log(err));
+}).then(console.log("Connected to MongoDB database")).catch((err) => console.log(err));
 
-app.listen("5000", () => {
-    console.log("Backend running");
-});
+app.use("/api/auth",authRoute); 
