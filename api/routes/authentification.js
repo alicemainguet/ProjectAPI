@@ -1,14 +1,11 @@
+
 const express = require("express");
 const router = express.Router();
 const Subscriber = require("../models/Subscriber");
 
-/*
-//test
-router.get('/', (req,res)=>{
-    res.send('Hello world')
-}) */
-//create (register)
 
+
+//create (register)
 router.post("/register", async (req,res)=>{
     try{
         const newSubscriber = new Subscriber({
@@ -23,5 +20,17 @@ router.post("/register", async (req,res)=>{
     }
 
 });
+/*
+router.get('/:id', (req, res) => {
+    res.send('Hello you!')
+  });
+*/
 
 module.exports = router
+ 
+//test
+/*
+router.get('/', (req,res)=>{
+    res.send('Hello world')
+
+*/

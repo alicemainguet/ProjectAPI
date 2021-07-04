@@ -2,16 +2,16 @@ const mongoose = require("mongoose")
 
 const SiteSchema = new mongoose.Schema({
     siteName:{
-        Type:String,
+        type:String,
         required:true,
         unique:true
     },
     photo:{
-        Type:String,
+        type:String,
         required:true
     },
     description:{
-        Type:String,
+        type:String,
         required:true,
     },
     siteType:{
@@ -23,4 +23,4 @@ const SiteSchema = new mongoose.Schema({
 ); 
 
 
-module.exports = mongoose.model("Site", UserSchema);
+module.exports = mongoose.model("Site", SiteSchema);

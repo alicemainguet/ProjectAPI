@@ -1,6 +1,6 @@
-/*const mongoose = require("mongoose")
+const mongoose = require("mongoose")
 
-const SiteType = new mongoose.Schema({
+const SiteTypeSchema = new mongoose.Schema({
     name:{
         type:String,
         required:true,
@@ -9,5 +9,4 @@ const SiteType = new mongoose.Schema({
         
 ); 
 
-module.exports = mongoose.model("SiteType", UserSchema);
-*/ 
+module.exports = mongoose.model("SiteType", SiteTypeSchema);
