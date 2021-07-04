@@ -5,7 +5,7 @@ const Subscriber = require("../models/Subscriber");
 
 
 
-//create (register)
+//user registration
 router.post("/register", async (req,res)=>{
     try{
         const newSubscriber = new Subscriber({
@@ -20,17 +20,23 @@ router.post("/register", async (req,res)=>{
     }
 
 });
-/*
-router.get('/:id', (req, res) => {
-    res.send('Hello you!')
+
+//login 
+router.post("/login", async (req, res) => {
+    try {
+      const subscriber = await Subscriber.findOne({ subscriberId: req.body.subscriberId });
+      !subscriber && res.status(400).json("user not found!");
+      if (req.body.password == subscriber.password) {
+        return res.status(200).json(subscriber);
+      } else {
+        res.status(400).json("incorrect password");
+      }
+      res.status(200).json(subscriber);
+    } catch (err) {
+      res.status(500).json(err);
+    }
   });
-*/
+
 
 module.exports = router
  
-//test
-/*
-router.get('/', (req,res)=>{
-    res.send('Hello world')
-
-*/
