@@ -4,7 +4,7 @@ const port = 3000;
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 const authRoute = require("./routes/authentification");
-//const subscribersRoute = require("./routes/subscribers");
+const sitesRoute = require("./routes/sites");
 dotenv.config();
 
 app.use(express.json());
@@ -31,4 +31,4 @@ mongoose.connect(process.env.MONGODB_URL, {
 }).then(console.log("Connected to MongoDB database")).catch((err) => console.log(err));
 
 app.use("/api/authentification",authRoute); 
-//app.use("/api/subscribers", subscribersRoute);
+app.use("/api/sites", sitesRoute);

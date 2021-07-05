@@ -8,7 +8,7 @@ const SiteSchema = new mongoose.Schema({
     },
     photo:{
         type:String,
-        required:true
+        //required:true
     },
     description:{
         type:String,
@@ -16,7 +16,7 @@ const SiteSchema = new mongoose.Schema({
     },
     siteType:{
         type:Array,
-        required:true,
+        //required:true,
     }
 },
     { timestamps:true}

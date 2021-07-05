@@ -6,6 +6,7 @@ const Subscriber = require("../models/Subscriber");
 
 
 //user registration
+/*
 router.post("/register", async (req,res)=>{
     try{
         const newSubscriber = new Subscriber({
@@ -19,6 +20,18 @@ router.post("/register", async (req,res)=>{
         res.status(500).json(err);
     }
 
+});
+*/ 
+
+//user registration : alternative?
+router.post("/register", async (req, res) => {
+  const newSubscriber = new Subscriber(req.body);
+  try {
+    const savedSubscriber = await newSubscriber.save();
+    res.status(200).json(savedSubscriber);
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
 //login 

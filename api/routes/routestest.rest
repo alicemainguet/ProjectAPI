@@ -1,11 +1,55 @@
-//GET http://localhost:3000
+//APP message
+GET http://localhost:3000
 
 
-//POST http://localhost:3000/api/authentification/register
-POST http://localhost:3000/authentification/login
+//SUBSCRIBERS
+
+###
+//user registration
+POST http://localhost:3000/api/authentification/register
 Content-Type: application/json
 
 {
-    "subscriberId": "Lucie"
+    "subscriberId": "Lucia",
+    "email": "coucouhello@salut.fr",
+    "password": "blip"
+}
+###
+//user login
+POST http://localhost:3000/api/authentification/login
+Content-Type: application/json
+
+{
+    "subscriberId": "Lucia",
+    "email": "coucouhello@salut.fr",
+    "password": "blip"
 }
 
+###
+//get all users
+GET http://localhost:3000/api/authentification
+
+
+###
+//get one user
+GET http://localhost:3000/api/authentification/60e1dcffd2e1712bfcdb2bf8 
+
+
+###
+//delete user
+DELETE http://localhost:3000/api/authentification/60e1dcffd2e1712bfcdb2bf8
+
+###
+
+
+//SITES 
+
+//create site 
+POST http://localhost:3000/api/sites/addSite
+Content-Type: application/json
+
+{
+    "siteName": "Exarcheia",
+    "description": "quartier sympa",
+    "siteType": "neighborhood"
+}
