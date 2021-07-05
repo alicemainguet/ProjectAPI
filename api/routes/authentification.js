@@ -37,6 +37,47 @@ router.post("/login", async (req, res) => {
     }
   });
 
+//get all users
+router.get('/', async (req, res) => {
+  try {
+    const subscribers = await Subscriber.find()
+    res.json(subscribers)
+  } catch (err) {
+    res.status(500).json({ message: err.message })
+  }
+});
+
+//get one user
+router.get("/:id", async (req, res) => {
+  try {
+    const subscriber = await Subscriber.findById(req.params.id)
+    if (subscriber == null) {
+      return res.status(404).json({ message: 'Cannot find subscriber' })
+    }
+    res.status(200).json(subscriber);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+
+//delete a subscriber 
+router.delete('/:id', async (req, res) => {
+  try {
+    const subscriber = await Subscriber.findById(req.params.id)
+    if (subscriber == null) {
+      return res.status(404).json("Cannot find subscriber")
+    }
+    await subscriber.remove()
+    res.json("subscriber deleted successfully")
+  } catch (err) {
+    res.status(500).json(err)
+  }
+})
+
+
+//update user
+//add if time!
 
 module.exports = router
  
