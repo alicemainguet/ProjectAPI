@@ -10,8 +10,8 @@ POST http://localhost:3000/api/authentification/register
 Content-Type: application/json
 
 {
-    "subscriberId": "Lucia",
-    "email": "coucouhello@salut.fr",
+    "subscriberId": "Lucion",
+    "email": "coucoubjr@salut.fr",
     "password": "blip"
 }
 ###
@@ -20,8 +20,8 @@ POST http://localhost:3000/api/authentification/login
 Content-Type: application/json
 
 {
-    "subscriberId": "Lucia",
-    "email": "coucouhello@salut.fr",
+    "subscriberId": "Lucion",
+    "email": "coucoubjr@salut.fr",
     "password": "blip"
 }
 
@@ -32,12 +32,12 @@ GET http://localhost:3000/api/authentification
 
 ###
 //get one user
-GET http://localhost:3000/api/authentification/60e1dcffd2e1712bfcdb2bf8 
+GET http://localhost:3000/api/authentification/60e1e91cce0e913168606bf1
 
 
 ###
 //delete user
-DELETE http://localhost:3000/api/authentification/60e1dcffd2e1712bfcdb2bf8
+DELETE http://localhost:3000/api/authentification/60e1b9e5817e5d2f30230532
 
 ###
 
@@ -49,7 +49,23 @@ POST http://localhost:3000/api/sites/addSite
 Content-Type: application/json
 
 {
-    "siteName": "Exarcheia",
+    "siteName": "Plaka",
     "description": "quartier sympa",
-    "siteType": "neighborhood"
+    "siteType": ["neighborhood", "area"]
 }
+###
+
+//get all sites
+GET http://localhost:3000/api/sites
+
+###
+//get one site
+GET http://localhost:3000/api/sites/60e2cf9fab8bac35889d3c13
+
+###
+//delete one site
+DELETE http://localhost:3000/api/sites/60e2d231ab8bac35889d3c19
+
+###
+//get with selection
+GET http://localhost:3000/api/sites?typeis=espace vert
