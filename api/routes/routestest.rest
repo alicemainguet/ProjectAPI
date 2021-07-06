@@ -49,9 +49,9 @@ POST http://localhost:3000/api/sites/addSite
 Content-Type: application/json
 
 {
-    "siteName": "Plaka",
-    "description": "quartier sympa",
-    "siteType": ["neighborhood", "area"]
+    "siteName": "Psiri",
+    "description": "very nice neighborhood",
+    "siteType": ["lieux"]
 }
 ###
 
@@ -64,8 +64,12 @@ GET http://localhost:3000/api/sites/60e2cf9fab8bac35889d3c13
 
 ###
 //delete one site
-DELETE http://localhost:3000/api/sites/60e2d231ab8bac35889d3c19
+DELETE http://localhost:3000/api/sites/60e33afc1c916827f068b57c
 
 ###
-//get with selection
-GET http://localhost:3000/api/sites?typeis=espace vert
+//get site : search by category
+GET http://localhost:3000/api/sites?typeis=neighborhood
+
+###
+//get site: search by keyword
+GET http://localhost:3000/api/sites?keyword=hood
