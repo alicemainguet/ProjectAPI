@@ -26,17 +26,6 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-//get all sites
-/*
-router.get('/', async (req, res) => {
-  try {
-    const sites = await Site.find()
-    res.json(sites)
-  } catch (err) {
-    res.status(500).json({ message: err.message })
-  }
-});
-*/ 
 
 
 
@@ -54,6 +43,21 @@ router.delete('/:id', async (req, res) => {
   }
 })
 
+//Update a site
+router.put("/:id", async (req, res) => {
+  try {
+    const updatedSite = await Site.findByIdAndUpdate(
+        req.params.id,
+        {
+          $set: req.body,
+        },
+        { new: true }
+      );
+      res.status(200).json({message: "Site updated successfully.", updatedSite : updatedSite});
+    } catch (err) {
+      res.status(500).json(err);
+    }
+});
 
 
 
@@ -87,74 +91,5 @@ router.get("/", async (req, res) => {
     }
   });
 
-//get all sites with possible selection WORKS
-/*
-router.get("/", async (req, res) => {
-  const typeofsite = req.query.typeis;
-  const searchField = req.query.siteName;
-  try {
-    let sites;
-     if (typeofsite) {
-      sites = await Site.find({
-        siteType: {
-          $in: [typeofsite],
-        },
-      });
-     } else if (searchField) {
-      sites = await Site.find({
-        siteName: {
-          $regex: searchField,$options: '$i'
-        },
-      });
-     } else {
-      sites = await Site.find();
-    }
-      res.status(200).json(sites);
-  } catch (err) {
-      res.status(500).json(err);
-    }
-  });
-*/
-/*
-//search by category
-router.get("/", async (req, res) => {
-  const typeofsite = req.query.typeis;
-  try {
-    let sites;
-     if (typeofsite) {
-      sites = await Site.find({
-        siteType: {
-          $in: [typeofsite],
-        },
-      });
-     } else {
-      sites = await Site.find();
-    }
-      res.status(200).json(sites);
-  } catch (err) {
-      res.status(500).json(err);
-    }
-  });
 
-
-//search by keyword
-  router.get("/", async (req, res) => {
-    const keyword = req.query.keyword;
-    try {
-      let sites;
-       if (keyword) {
-        sites = await Site.find({
-          $or: [
-            { description: { $regex: keyword,$options: '$i'}},
-            { siteName: { $regex: keyword,$options: '$i'}} 
-          ]})
-       } else {
-        sites = await Site.find();
-      }
-        res.status(200).json(sites);
-    } catch (err) {
-        res.status(500).json(err);
-      }
-    });
-*/
 module.exports = router

@@ -5,32 +5,14 @@ const Subscriber = require("../models/Subscriber");
 
 
 
-//user registration
-/*
-router.post("/register", async (req,res)=>{
-    try{
-        const newSubscriber = new Subscriber({
-            subscriberId: req.body.subscriberId,
-            email: req.body.email,
-            password: req.body.password,
-        })
-        const subscriber = await newSubscriber.save();
-        res.status(200).json(subscriber);
-    }catch(err) {
-        res.status(500).json(err);
-    }
-
-});
-*/ 
-
-//user registration : alternative?
+//user registration 
 router.post("/register", async (req, res) => {
   const newSubscriber = new Subscriber(req.body);
   try {
     const savedSubscriber = await newSubscriber.save();
     res.status(200).json(savedSubscriber);
   } catch (err) {
-    res.status(500).json(err);
+    res.status(500).json({message : 'registration failed. Try using another email adress or user name', error: err});
   }
 });
 
@@ -40,17 +22,17 @@ router.post("/login", async (req, res) => {
       const subscriber = await Subscriber.findOne({ subscriberId: req.body.subscriberId });
       !subscriber && res.status(400).json("user not found!");
       if (req.body.password == subscriber.password) {
-        return res.status(200).json(subscriber);
+        return res.status(200).json({ subscriber : subscriber.subscriberId, id: subscriber.id,  message: 'connected successfully' });
       } else {
         res.status(400).json("incorrect password");
       }
-      res.status(200).json(subscriber);
+      //res.status(200).json(subscriber);
     } catch (err) {
       res.status(500).json(err);
     }
   });
 
-//get all users
+//get all subscribers
 router.get('/', async (req, res) => {
   try {
     const subscribers = await Subscriber.find()
@@ -60,7 +42,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-//get one user
+//get one subscriber
 router.get("/:id", async (req, res) => {
   try {
     const subscriber = await Subscriber.findById(req.params.id)
@@ -88,9 +70,6 @@ router.delete('/:id', async (req, res) => {
   }
 })
 
-
-//update user
-//add if time!
 
 module.exports = router
  

@@ -10,9 +10,9 @@ POST http://localhost:3000/api/authentification/register
 Content-Type: application/json
 
 {
-    "subscriberId": "Lucion",
-    "email": "coucoubjr@salut.fr",
-    "password": "blip"
+    "subscriberId": "alice",
+    "email": "alicemainguet@hello.fr",
+    "password": "blup"
 }
 ###
 //user login
@@ -20,9 +20,8 @@ POST http://localhost:3000/api/authentification/login
 Content-Type: application/json
 
 {
-    "subscriberId": "Lucion",
-    "email": "coucoubjr@salut.fr",
-    "password": "blip"
+    "subscriberId": "alice",
+    "password": "blup"
 }
 
 ###
@@ -32,12 +31,12 @@ GET http://localhost:3000/api/authentification
 
 ###
 //get one user
-GET http://localhost:3000/api/authentification/60e1e91cce0e913168606bf1
+GET http://localhost:3000/api/authentification/60e1df003de5842a54d286f1
 
 
 ###
 //delete user
-DELETE http://localhost:3000/api/authentification/60e1b9e5817e5d2f30230532
+DELETE http://localhost:3000/api/authentification/60e1df003de5842a54d286f1
 
 ###
 
@@ -50,11 +49,17 @@ Content-Type: application/json
 
 {
     "siteName": "Psiri",
-    "description": "very nice neighborhood",
-    "siteType": ["lieux"]
+    "description": "Very nice and animated neighborhood in the center of Athens. Lot of bars and restaurants!",
+    "siteType": ["neighborhood"]
+}
+
+###
+//update a sites
+GET http://localhost:3000/api/sites/60e569464f21ff34708cda75
+{
+    "siteType": ["green area"]
 }
 ###
-
 //get all sites
 GET http://localhost:3000/api/sites
 
@@ -64,12 +69,19 @@ GET http://localhost:3000/api/sites/60e2cf9fab8bac35889d3c13
 
 ###
 //delete one site
-DELETE http://localhost:3000/api/sites/60e33afc1c916827f068b57c
+DELETE http://localhost:3000/api/sites/60e563984f21ff34708cda62
+
+
+
+###
+//get all sites 
+GET http://localhost:3000/api/sites
+
 
 ###
 //get site : search by category
-GET http://localhost:3000/api/sites?typeis=neighborhood
+GET http://localhost:3000/api/sites?typeis=hill
 
 ###
 //get site: search by keyword
-GET http://localhost:3000/api/sites?keyword=hood
+GET http://localhost:3000/api/sites?keyword=Lycab
